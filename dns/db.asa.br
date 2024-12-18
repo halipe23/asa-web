@@ -13,3 +13,5 @@ $TTL	604800
 @		IN	A	10.25.2.186
 www		IN	A	10.25.2.186
 portal	IN	CNAME	www
+felipe  IN 	CNAME	www
+teste	IN	CNAME	www
