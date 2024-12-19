@@ -1,8 +1,8 @@
 ;
-; BIND data file for asa.br zone
+; BIND data file for felipe.asa.br zone
 ;
 $TTL	604800
-@	IN	SOA	ns.asa.br. root.asa.br. (
+@	IN	SOA	ns.felipe.asa.br. root.felipe.asa.br. (
 			      1		; Serial
 			 604800		; Refresh
 			  86400		; Retry
@@ -10,8 +10,8 @@ $TTL	604800
 			 604800 )	; Negative Cache TTL
 ;
 @		IN	NS	ns.
-@		IN	A	10.25.2.186
-www		IN	A	10.25.2.186
+@		IN	A	10.24.5.46
+www		IN	A	10.24.5.46
 portal	IN	CNAME	www
 felipe  IN 	CNAME	www
 teste	IN	CNAME	www

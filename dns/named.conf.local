@@ -2,7 +2,7 @@
 // Do any local configuration here
 //
 
-zone "asa.br"{
+zone "felipe.asa.br"{
     type master;
     file "/etc/bind/db.asa.br";
     allow-transfer {
