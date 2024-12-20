@@ -6,13 +6,7 @@ services:
     container_name: dns
     ports:
       - "53:53/udp"
-  #web:
-   # build:
-    #  context: ./web
-    #  dockerfile: Dockerfile
-    #container_name: web
-    #ports:
-    #  - "81:80"
+
   proxy:
     build: 
       context: ./proxy
@@ -32,6 +26,14 @@ services:
     container_name: asa-server
     networks:
       - asa-networks
+    
+  #asa-server-mercado:
+    #build:
+      #context: ./asa-server-mercado
+      #dockerfile: Dockerfile
+    #container_name: asa-server-mercado
+    #networks:
+    #  - asa-networks
 
   asa-server2:
     build:
@@ -40,6 +42,13 @@ services:
     container_name: asa-server02
     networks:
       - asa-networks
+  #asa-server-mail:
+    #build:
+      #context: ./asa-server-mail
+      #dockerfile: Dockerfile
+    #container_name: asa-server-mail
+    #networks:
+      #- asa-networks
 
 networks:
   asa-networks:

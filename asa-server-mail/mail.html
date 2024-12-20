@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Mail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .mail-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        button {
+            background: #007bff;
+            color: #ffffff;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="mail-container">
+        <h1>Teste de Mail</h1>
+        <form action="#" method="post">
+            <label for="to">Destinatário:</label>
+            <input type="email" id="to" name="to" placeholder="email@exemplo.com" required>
+            
+            <label for="subject">Assunto:</label>
+            <input type="text" id="subject" name="subject" placeholder="Assunto do email" required>
+            
+            <label for="message">Mensagem:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Escreva sua mensagem aqui" required></textarea>
+            
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>
