@@ -19,6 +19,19 @@ services:
     networks:
       - asa-networks
 
+  email:
+    build: 
+      context: ./email
+      dockerfile: Dockerfile
+    container_name: email
+    ports:
+        - "25:25/tcp"
+        - "110:110/tcp"
+        - "143:143/tcp"
+        - "587:587/tcp"                
+    networks:
+      - asa-networks
+
   asa-server:
     build:
       context: ./asa-server
