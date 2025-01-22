@@ -10,7 +10,7 @@ $TTL	604800
 			 604800 )	; Negative Cache TTL
 ;
 @		IN	NS	ns.
-@		IN	MX	10	mail.asa.br
+@		IN	MX	10	mail.felipe.asa.br.
 @		IN	A	10.25.2.186
 www		IN	A	10.25.2.186
 mail	IN	A	10.25.2.186
