@@ -2,22 +2,24 @@ FROM ubuntu:latest
 
 RUN apt update -y
 RUN apt upgrade -y
-RUN apt install postfix vim iputils-ping telnet dnsutils -y
-RUN apt-get install dovecot-imapd dovecot-pop3d -y
-RUN apt install -q -y syslog-ng
+RUN apt-get install postfix dovecot-imapd dovecot-pop3d syslog-ng vim -y
 #copia o arquivo para server
-COPY main.cf /etc/postfix
+COPY postifix-dovecot/main.cf /etc/postfix
 COPY 10-auth.conf /etc/dovecot/conf.d
 #add usuarios email
 RUN useradd -c 'Chico Moedas' -m moedas
-RUN useradd -c 'Felipe' -m felipe
-RUN useradd -c 'Luisa Sonza' -m sonsa
-#RUN useradd -c 'Chico Moedas' -m -s /bin/false moedas
+RUN useradd -c 'rafael' -m rafael
 # Set user passord
 RUN echo "moedas:redes" | chpasswd moedas 
-RUN echo "sonsa:redes" | chpasswd sonsa 
-RUN echo "felipe:redes" | chpasswd felipe
-
-#CMD ["sh", "-C", "/sbin/postfix start-fg", "tail -f /var/log/maillog"]
+RUN echo "rafael:redes" | chpasswd rafael
+#Criar diretório temporário para Maildir
+RUN mkdir -p /maildata/rafael/Maildir /maildata/moedas/Maildir && \
+    chown -R rafael:rafael /maildata/rafael && \
+    chown -R moedas:moedas /maildata/moedas && \
+    chmod -R 700 /maildata/*
 CMD ["sh", "-c", "service syslog-ng start ; service postfix start ; service dovecot start; tail -F /var/log/mail.log"]
-#CMD ["postfix", "start-fg"]
+# Copiar script de inicialização
+COPY init.sh /init.sh
+RUN chmod +x /init.sh
+
+ENTRYPOINT ["/init.sh"]

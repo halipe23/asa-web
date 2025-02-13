@@ -1,20 +1,21 @@
 ;
-; BIND data file for felipe.asa.br zone
+; BIND data file for local loopback interface
 ;
+$ORIGIN miami.com
 $TTL	604800
-@	IN	SOA	ns.felipe.asa.br. root.felipe.asa.br. (
+@	IN	SOA	ns.miami.com.br. root.miami.com. (
 			      1		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
 			 604800 )	; Negative Cache TTL
 ;
-@		IN	NS	ns.
-@		IN	MX	10	mail.felipe.asa.br.
-@		IN	A	192.168.0.7
-www		IN	A	192.168.0.7
-mail	IN	A	192.168.0.7
-webmail IN	CNAME	www
-portal	IN	CNAME	www
-felipe  IN 	CNAME	www
-teste	IN	CNAME	www
+@		IN	NS	ns.miami.com.
+@		IN	MX	10	mail.miami.com.
+@		IN	A	10.25.2.186
+
+ns      IN  A   10.25.2.186
+mail    IN  A   10.25.2.186
+webmail IN  A   10.25.2.186
+www     IN  A   10.25.2.186
+proxy   IN  CNAME www

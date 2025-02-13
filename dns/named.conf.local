@@ -2,7 +2,7 @@
 // Do any local configuration here
 //
 
-zone "felipe.asa.br" {
+zone "miami.com" {
     type master;
     file "/etc/bind/zones/db.asa.br";
 };
