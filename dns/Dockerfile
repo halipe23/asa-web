@@ -14,4 +14,4 @@ CMD [ "/usr/sbin/named", "-g", "-c", "/etc/bind/named.conf", "-u", "bind" ]
 #Copia arquivo da imagem
 COPY named.conf.local /etc/bind
 
-COPY db.asa.br /etc/bind
+COPY zones/db.asa.br /etc/bind

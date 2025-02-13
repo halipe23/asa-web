@@ -1,68 +1,73 @@
+version: '3.8'
+
 services:
+  # DNS (Bind9)
   dns:
-    build:
-      context: ./dns
-      dockerfile: Dockerfile
+    build: ./dns
     container_name: dns
+    networks:
+      - asa-networks
     ports:
       - "53:53/udp"
+    volumes:
+      - ./dns/zones:/etc/bind/zones
 
+  # Proxy Reverso (NGINX com HTTPS)
   proxy:
-    build: 
-      context: ./proxy
-      dockerfile: Dockerfile
+    build: ./proxy
     container_name: proxy
     ports:
-        - "80:80"
+      - "80:80"
+      - "443:443"
+    networks:
+      - asa-networks
     depends_on:
-      - asa-server
-    networks:
-      - asa-networks
+      - webmail
+    volumes:
+      - ./proxy/ssl:/etc/nginx/ssl
 
+  # Servidor de E-mail (Postfix + Dovecot)
   email:
-    build: 
-      context: ./email
-      dockerfile: Dockerfile
+    build: ./email
     container_name: email
+    networks:
+      - asa-networks
     ports:
-        - "25:25/tcp"
-        - "110:110/tcp"
-        - "143:143/tcp"
-        - "587:587/tcp"                
-    networks:
-      - asa-networks
+      - "25:25"
+      - "143:143"
+      - "587:587"
+    volumes:
+      - maildata:/var/mail
 
-  asa-server:
-    build:
-      context: ./asa-server
-      dockerfile: Dockerfile
-    container_name: asa-server
+  # Webmail (Roundcube)
+  webmail:
+    image: roundcube/roundcubemail:latest
+    container_name: webmail
     networks:
       - asa-networks
-    
-  #asa-server-mercado:
-    #build:
-      #context: ./asa-server-mercado
-      #dockerfile: Dockerfile
-    #container_name: asa-server-mercado
-    #networks:
-    #  - asa-networks
+    environment:
+      - ROUNDCUBEMAIL_DEFAULT_HOST=email
+    depends_on:
+      - email
 
-  asa-server2:
-    build:
-      context: ./asa-server02
-      dockerfile: Dockerfile
-    container_name: asa-server02
+  # Servidor SSH
+  ssh:
+    image: ubuntu:latest
+    container_name: ssh
+    command: |
+      bash -c "apt update && 
+      apt install -y openssh-server && 
+      echo 'PermitRootLogin no' >> /etc/ssh/sshd_config && 
+      service ssh start && 
+      tail -f /dev/null"
     networks:
       - asa-networks
-  #asa-server-mail:
-    #build:
-      #context: ./asa-server-mail
-      #dockerfile: Dockerfile
-    #container_name: asa-server-mail
-    #networks:
-      #- asa-networks
+    ports:
+      - "22:22"
 
 networks:
   asa-networks:
-      driver: bridge
+    driver: bridge
+
+volumes:
+  maildata:
