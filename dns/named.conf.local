@@ -2,9 +2,9 @@
 // Do any local configuration here
 //
 
-zone "miami.com" {
+zone "miami.asa.br" {
     type master;
-    file "/etc/bind/zones/db.asa.br";
+    file "/etc/bind/zones/db.miami.asa.br";
 };
 
 // Consider adding the 1918 zones here, if they are not used in your

@@ -1,0 +1,20 @@
+Return-Path: <felipe@pipa.com>
+X-Original-To: rafael@pipa.com
+Delivered-To: rafael@pipa.com
+Received: from webmail.pipa.com (webmail.provedor_praia-net [172.22.0.6])
+	(Authenticated sender: felipe)
+	by mail.pipa.com (Postfix) with ESMTPSA id 96941E8A7AA
+	for <rafael@pipa.com>; Thu,  6 Feb 2025 14:42:06 +0000 (UTC)
+MIME-Version: 1.0
+Date: Thu, 06 Feb 2025 11:42:06 -0300
+From: felipe <felipe@pipa.com>
+To: rafael@pipa.com
+Subject: teste de email
+Message-ID: <a6d3ba32780a55af05b841e711ae8ec7@pipa.com>
+X-Sender: felipe@pipa.com
+Disposition-Notification-To: felipe <felipe@pipa.com>
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+
+vai chegar aí logo logo

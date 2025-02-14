@@ -1,0 +1,21 @@
+;
+; BIND data file for local loopback interface
+;
+$ORIGIN miami.asa.br
+$TTL	604800
+@	IN	SOA	ns.miami.asa.br. root.miami.asa.br. (
+			      1		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@		IN	NS	ns.miami.asa.
+@		IN	MX	10	mail.miami.asa.br.
+@		IN	A	10.24.19.172
+
+ns      IN  A   10.24.19.172
+mail    IN  A   10.24.19.172
+webmail IN  A   10.24.19.172
+www     IN  A   10.24.19.172
+proxy   IN  CNAME www

@@ -1,0 +1,50 @@
+Return-Path: <>
+X-Original-To: rafael@pipa.com
+Delivered-To: rafael@pipa.com
+Received: from webmail.pipa.com (webmail.provedor_praia-net [172.18.0.6])
+	(Authenticated sender: felipe)
+	by mail.pipa.com (Postfix) with ESMTPSA id F253FE8A7AA
+	for <rafael@pipa.com>; Thu,  6 Feb 2025 14:22:31 +0000 (UTC)
+MIME-Version: 1.0
+Date: Thu, 06 Feb 2025 11:22:31 -0300
+From: felipe <felipe@pipa.com>
+To: rafael <rafael@pipa.com>
+Subject: =?UTF-8?Q?Confirma=C3=A7=C3=A3o_de_Leitura_=28exibida=29=3A_test?=
+ =?UTF-8?Q?e?=
+Message-ID: <3452fc2fd74647d8612bd68c8ecd9c8e@pipa.com>
+X-Sender: felipe@pipa.com
+References: <2dac77867c04fb9a64e1ef1954dffd92@pipa.com>
+In-Reply-To: <2dac77867c04fb9a64e1ef1954dffd92@pipa.com>
+Content-Type: multipart/report;
+ report-type=disposition-notification;
+ boundary="=_f1d366c9253bfafbee0865f838722488"
+
+--=_f1d366c9253bfafbee0865f838722488
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+
+Esta =C3=A9 uma confirma=C3=A7=C3=A3o de leitura da sua mensagem
+
+	Para: felipe@pipa.com
+	Assunto: teste
+	Data: 2025-02-06 11:22
+
+Nota: Esta confirma=C3=A7=C3=A3o de leitura somente informa que a mensagem =
+foi aberta
+no computador do destinat=C3=A1rio. N=C3=A3o h=C3=A1 garantia que o destina=
+t=C3=A1rio tenha
+lido ou compreendido o conte=C3=BAdo da mensagem.
+--=_f1d366c9253bfafbee0865f838722488
+Content-Transfer-Encoding: 7bit
+Content-Type: message/disposition-notification;
+ name=MDNPart2.txt
+Content-Disposition: inline;
+ filename=MDNPart2.txt;
+ size=202
+
+Final-Recipient: rfc822; felipe@pipa.com
+Original-Message-ID: <2dac77867c04fb9a64e1ef1954dffd92@pipa.com>
+Disposition: manual-action/MDN-sent-manually; displayed
+Original-Recipient: felipe@pipa.com
+
+--=_f1d366c9253bfafbee0865f838722488--

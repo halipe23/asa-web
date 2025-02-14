@@ -3,52 +3,76 @@ version: '3.8'
 services:
   # DNS (Bind9)
   dns:
-    build: ./dns
+    build: 
+      context: ./dns
+      dockerfile: Dockerfile
+    image: dns
     container_name: dns
     networks:
-      - asa-networks
+      - miami-networks
     ports:
+      - "53:53/tcp"
       - "53:53/udp"
     volumes:
-      - ./dns/zones:/etc/bind/zones
+      - ./dns/zones/db.miami.com.br:/etc/bind/db.miami.com.br
+      - ./dns/named.conf.local:/etc/bind/named.conf.local
 
   # Proxy Reverso (NGINX com HTTPS)
   proxy:
-    build: ./proxy
+    build: 
+      context: ./proxy
+      dockerfile: Dockerfile
+    image: proxy
     container_name: proxy
     ports:
       - "80:80"
       - "443:443"
     networks:
-      - asa-networks
+      - miami-networks
     depends_on:
+      - dns
+      - email
       - webmail
     volumes:
+      - ./proxy/default.conf:/etc/nginx/conf.d/default.conf
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf
       - ./proxy/ssl:/etc/nginx/ssl
 
   # Servidor de E-mail (Postfix + Dovecot)
   email:
-    build: ./email
+    build: 
+      context: ./email
+      dockerfile: Dockerfile
+    image: email
     container_name: email
     networks:
-      - asa-networks
+      - miami-networks
     ports:
-      - "25:25"
-      - "143:143"
-      - "587:587"
+      - "25:25/tcp"
+      - "587:587/tcp"
+      - "110:110/tcp"
+      - "143:143/tcp"
+      - "465:465/tcp"
     volumes:
-      - maildata:/var/mail
+      - ./email/postifix-dovecot/main.cf:/etc/postfix/main.cf
+      - ./email/postifix-dovecot/dovecot.conf:/etc/dovecot/dovecot.conf
+      - ./email/postifix-dovecot/10-master.conf:/etc/dovecot/conf.d/10-master.conf
+      - ./email/data:/home
 
   # Webmail (Roundcube)
   webmail:
     image: roundcube/roundcubemail:latest
     container_name: webmail
     networks:
-      - asa-networks
+      - miami-networks
     environment:
-      - ROUNDCUBEMAIL_DEFAULT_HOST=email
+      - ROUNDCUBEMAIL_DEFAULT_HOST=tls://email:143
+      - ROUNDCUBEMAIL_SMTP_SERVER=tls://email:25
+      - ROUNDCUBEMAIL_DB_TYPE=sqlite
     depends_on:
       - email
+    volumes:
+      - ./webmail/conf/config.inc.php:/var/roundcube/config/config.inc.php
 
   # Servidor SSH
   ssh:
@@ -61,12 +85,12 @@ services:
       service ssh start && 
       tail -f /dev/null"
     networks:
-      - asa-networks
+      - miami-networks
     ports:
       - "22:22"
 
 networks:
-  asa-networks:
+  miami-networks:
     driver: bridge
 
 volumes:
