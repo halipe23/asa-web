@@ -10,12 +10,12 @@ $TTL	604800
 			2419200		; Expire
 			 604800 )	; Negative Cache TTL
 ;
-@		IN	NS	ns.miami.asa.
-@		IN	MX	10	mail.miami.asa.br.
-@		IN	A	10.24.19.172
+@		IN	NS	ns.miami.asa.br.
+@		IN	MX	10	webmail.miami.asa.br.
+@		IN	A	192.168.0.7
 
-ns      IN  A   10.24.19.172
-mail    IN  A   10.24.19.172
-webmail IN  A   10.24.19.172
-www     IN  A   10.24.19.172
+ns      IN  A   192.168.0.7
+mail    IN  A   192.168.0.7
+webmail IN  A   192.168.0.7
+www     IN  A   192.168.0.7
 proxy   IN  CNAME www

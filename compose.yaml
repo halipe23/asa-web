@@ -14,7 +14,7 @@ services:
       - "53:53/tcp"
       - "53:53/udp"
     volumes:
-      - ./dns/zones/db.miami.com.br:/etc/bind/db.miami.com.br
+      - ./dns/zones/db.miami.asa.br:/etc/bind/db.miami.asa.br
       - ./dns/named.conf.local:/etc/bind/named.conf.local
 
   # Proxy Reverso (NGINX com HTTPS)
