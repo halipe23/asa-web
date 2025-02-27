@@ -4,23 +4,25 @@ services:
   # DNS (Bind9)
   dns:
     build: 
-      context: ./dns
+      context: ./Provedor/dns
       dockerfile: Dockerfile
     image: dns
     container_name: dns
     networks:
-      - miami-networks
+      - praia-networks
     ports:
       - "53:53/tcp"
       - "53:53/udp"
     volumes:
-      - ./dns/zones/db.miami.asa.br:/etc/bind/db.miami.asa.br
-      - ./dns/named.conf.local:/etc/bind/named.conf.local
+      - ./Provedor/dns/zones/db.miami.asa.br:/etc/bind/db.miami.asa.br
+      - ./Provedor/dns/zones/db.genipa.asa.br:/etc/bind/db.genipa.asa.br
+      - ./Provedor/dns/zones/db.fogo.asa.br:/etc/bind/db.fogo.asa.br
+      - ./Provedor/dns/named.conf.local:/etc/bind/named.conf.local
 
   # Proxy Reverso (NGINX com HTTPS)
   proxy:
     build: 
-      context: ./proxy
+      context: ./Provedor/proxy
       dockerfile: Dockerfile
     image: proxy
     container_name: proxy
@@ -28,15 +30,14 @@ services:
       - "80:80"
       - "443:443"
     networks:
-      - miami-networks
+      - praia-networks
+      - praia-proxy
     depends_on:
       - dns
-      - email
-      - webmail
     volumes:
-      - ./proxy/default.conf:/etc/nginx/conf.d/default.conf
-      - ./proxy/nginx.conf:/etc/nginx/nginx.conf
-      - ./proxy/ssl:/etc/nginx/ssl
+      - ./Provedor/proxy/config/default.conf:/etc/nginx/conf.d/default.conf
+      - ./Provedor/proxy/config/nginx.conf:/etc/nginx/nginx.conf
+      - ./Provedor/proxy/config/ssl:/etc/nginx/ssl
 
   # Servidor de E-mail (Postfix + Dovecot)
   email:
@@ -46,7 +47,7 @@ services:
     image: email
     container_name: email
     networks:
-      - miami-networks
+      - praia-networks
     ports:
       - "25:25/tcp"
       - "587:587/tcp"
@@ -64,7 +65,7 @@ services:
     image: roundcube/roundcubemail:latest
     container_name: webmail
     networks:
-      - miami-networks
+      - praia-networks
     environment:
       - ROUNDCUBEMAIL_DEFAULT_HOST=tls://email:143
       - ROUNDCUBEMAIL_SMTP_SERVER=tls://email:25
@@ -76,22 +77,18 @@ services:
 
   # Servidor SSH
   ssh:
-    image: ubuntu:latest
+    build:
+      context: ./Provedor/ssh
+      dockerfile: Dockerfile
+    image: ssh
     container_name: ssh
-    command: |
-      bash -c "apt update && 
-      apt install -y openssh-server && 
-      echo 'PermitRootLogin no' >> /etc/ssh/sshd_config && 
-      service ssh start && 
-      tail -f /dev/null"
     networks:
-      - miami-networks
+      - praia-networks
     ports:
       - "22:22"
 
 networks:
-  miami-networks:
+  praia-networks:
     driver: bridge
-
-volumes:
-  maildata:
+  praia-proxy:
+    external: true

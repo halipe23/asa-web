@@ -1,0 +1,66 @@
+services:
+    db-fogo:
+        image: mariadb:latest
+        container_name: banco-fogo
+        environment:
+            MYSQL_ROOT_PASSWORD: rootpass
+            MYSQL_DATABASE: wordpress
+            MYSQL_USER: wpuser
+            MYSQL_PASSWORD: wppass
+        networks:
+            - praia-networks
+        volumes:
+            - db_data:/var/lib/mysql
+    wordpress-fogo:
+        image: wordpress:latest
+        container_name: wordpress-fogo
+        depends_on:
+        - db-fogo
+        restart: always
+        tty: true
+        environment:
+            WORDPRESS_DB_HOST: db-fogo
+            WORDPRESS_DB_USER: wpuser
+            WORDPRESS_DB_PASSWORD: wppass
+            WORDPRESS_DB_NAME: wordpress
+        networks:
+        - praia-network
+        - praia-proxy
+        volumes:
+        - wordpress_data:/var/www/html
+    wordpress-2-fogo:
+        image: wordpress:latest
+        container_name: wordpress-2-fogo
+        depends_on:
+            - db-fogo
+        restart: always
+        tty: true
+        environment:
+            WORDPRESS_DB_HOST: db-fogo
+            WORDPRESS_DB_USER: wpuser
+            WORDPRESS_DB_PASSWORD: wppass
+            WORDPRESS_DB_NAME: wordpress
+        networks:
+        - praia-network
+        - praia-proxy
+        volumes:
+        - wordpress_data:/var/www/html
+    ssh:
+        build:
+            context: ./Cliente-fogo/SSH
+            dockerfile: Dockerfile
+        image: ssh
+        container_name: ssh-fogo
+        ports:
+            - "2223:22"
+        networks:
+            - praia-network
+    volumes:
+        db_data:
+        wordpress_data:
+    #Redes {lembre-se sempre de criar a rede proxy praia com docker network create proxy-praia}
+    networks:
+        beach-network:
+            driver: bridge
+        proxy-praia:
+            external: true

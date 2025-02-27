@@ -1,0 +1,21 @@
+;
+; BIND data file for local loopback interface
+;
+$ORIGIN fogo.asa.br
+$TTL	604800
+@	IN	SOA	ns.fogo.asa.br. root.fogo.asa.br. (
+			      1		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@		IN	NS	ns.fogo.asa.br.
+@		IN	MX	10	webmail.fogo.asa.br.
+@		IN	A	10.24.4.27
+
+ns      IN  A   10.24.4.27
+mail    IN  A   10.24.4.27
+webmail IN  A   10.24.4.27
+www     IN  A   10.24.4.27
+proxy   IN  CNAME www

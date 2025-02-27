@@ -7,6 +7,16 @@ zone "miami.asa.br" {
     file "/etc/bind/zones/db.miami.asa.br";
 };
 
+zone "genipa.asa.br" {
+    type master;
+    file "/etc/bind/zones/db.genipa.asa.br";
+};
+
+zone "fogo.asa.br" {
+    type master;
+    file "/etc/bind/zones/db.fogo.asa.br";
+};
+
 // Consider adding the 1918 zones here, if they are not used in your
 // organization
 //include "/etc/bind/zones.rfc1918";
