@@ -1,7 +1,7 @@
 ;
 ; BIND data file for local loopback interface
 ;
-$ORIGIN miami.asa.br
+$ORIGIN miami.asa.br.
 $TTL	604800
 @	IN	SOA	ns.miami.asa.br. root.miami.asa.br. (
 			      1		; Serial

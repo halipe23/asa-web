@@ -5,16 +5,19 @@
 zone "miami.asa.br" {
     type master;
     file "/etc/bind/zones/db.miami.asa.br";
+    allow-query { any; };
 };
 
 zone "genipa.asa.br" {
     type master;
     file "/etc/bind/zones/db.genipa.asa.br";
+    allow-query { any; };
 };
 
 zone "fogo.asa.br" {
     type master;
     file "/etc/bind/zones/db.fogo.asa.br";
+    allow-query { any; };
 };
 
 // Consider adding the 1918 zones here, if they are not used in your

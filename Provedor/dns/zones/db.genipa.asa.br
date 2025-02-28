@@ -1,7 +1,7 @@
 ;
 ; BIND data file for local loopback interface
 ;
-$ORIGIN genipa.asa.br
+$ORIGIN genipa.asa.br.
 $TTL	604800
 @	IN	SOA	ns.genipa.asa.br. root.genipa.asa.br. (
 			      1		; Serial
@@ -11,11 +11,10 @@ $TTL	604800
 			 604800 )	; Negative Cache TTL
 ;
 @		IN	NS	ns.genipa.asa.br.
-@		IN	MX	10	webmail.genipa.asa.br.
+@		IN	MX	10	mail
 @		IN	A	10.24.4.27
 
 ns      IN  A   10.24.4.27
 mail    IN  A   10.24.4.27
-webmail IN  A   10.24.4.27
 www     IN  A   10.24.4.27
 proxy   IN  CNAME www

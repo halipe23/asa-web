@@ -24,7 +24,7 @@ services:
             WORDPRESS_DB_PASSWORD: wppass
             WORDPRESS_DB_NAME: wordpress
         networks:
-        - praia-network
+        - praia-networks
         - praia-proxy
         volumes:
         - wordpress_data:/var/www/html
@@ -41,26 +41,26 @@ services:
             WORDPRESS_DB_PASSWORD: wppass
             WORDPRESS_DB_NAME: wordpress
         networks:
-        - praia-network
+        - praia-networks
         - praia-proxy
         volumes:
         - wordpress_data:/var/www/html
     ssh:
         build:
-            context: ./Cliente-fogo/SSH
+            context: ./SSH
             dockerfile: Dockerfile
         image: ssh
         container_name: ssh-fogo
         ports:
             - "2223:22"
         networks:
-            - praia-network
-    volumes:
-        db_data:
-        wordpress_data:
-    #Redes {lembre-se sempre de criar a rede proxy praia com docker network create proxy-praia}
-    networks:
-        beach-network:
-            driver: bridge
-        proxy-praia:
-            external: true
+            - praia-networks
+volumes:
+    db_data:
+    wordpress_data:
+#Redes {lembre-se sempre de criar a rede proxy praia com docker networks create proxy-praia}
+networks:
+    praia-networks:
+        driver: bridge
+    praia-proxy:
+        external: true
