@@ -14,9 +14,9 @@ services:
       - "53:53/tcp"
       - "53:53/udp"
     volumes:
-      - ./Provedor/dns/zones/db.miami.asa.br:/etc/bind/zones/db.miami.asa.br
-      - ./Provedor/dns/zones/db.genipa.asa.br:/etc/bind/zones/db.genipa.asa.br
-      - ./Provedor/dns/zones/db.fogo.asa.br:/etc/bind/zones/db.fogo.asa.br
+      - ./Provedor/dns/zones/db.miami.asa.br:/etc/bind/db.miami.asa.br
+      - ./Provedor/dns/zones/db.genipa.asa.br:/etc/bind/db.genipa.asa.br
+      - ./Provedor/dns/zones/db.fogo.asa.br:/etc/bind/db.fogo.asa.br
       - ./Provedor/dns/named.conf.local:/etc/bind/named.conf.local
 
   # Proxy Reverso (NGINX com HTTPS)
@@ -39,41 +39,41 @@ services:
       - ./Provedor/proxy/config/nginx.conf:/etc/nginx/nginx.conf
       - ./Provedor/proxy/config/ssl:/etc/nginx/ssl
 
-  # Servidor de E-mail (Postfix + Dovecot)
-  # email:
-  #   build: 
-  #     context: ./Provedor/email
-  #     dockerfile: Dockerfile
-  #   image: email
-  #   container_name: email
-  #   networks:
-  #     - praia-networks
-  #   ports:
-  #     - "25:25/tcp"
-  #     - "587:587/tcp"
-  #     - "110:110/tcp"
-  #     - "143:143/tcp"
-  #     - "465:465/tcp"
-  #   volumes:
-  #     - ./email/postifix-dovecot/main.cf:/etc/postfix/main.cf
-  #     - ./email/postifix-dovecot/dovecot.conf:/etc/dovecot/dovecot.conf
-  #     - ./email/postifix-dovecot/10-master.conf:/etc/dovecot/conf.d/10-master.conf
-  #     - ./email/data:/home
+  #Servidor de E-mail (Postfix + Dovecot)
+  email:
+    build: 
+      context: ./Provedor/email
+      dockerfile: Dockerfile
+    image: email
+    container_name: email
+    networks:
+      - praia-networks
+    ports:
+      - "25:25/tcp"
+      - "587:587/tcp"
+      - "110:110/tcp"
+      - "143:143/tcp"
+      - "465:465/tcp"
+    volumes:
+      - ./Provedor/email/postifix-dovecot/main.cf:/etc/postfix/main.cf
+      - ./Provedor/email/postifix-dovecot/dovecot.conf:/etc/dovecot/dovecot.conf
+      - ./Provedor/email/postifix-dovecot/10-master.conf:/etc/dovecot/conf.d/10-master.conf
+      - ./Provedor/email/data:/home
 
-  # # Webmail (Roundcube)
-  # webmail:
-  #   image: roundcube/roundcubemail:latest
-  #   container_name: webmail
-  #   networks:
-  #     - praia-networks
-  #   environment:
-  #     - ROUNDCUBEMAIL_DEFAULT_HOST=tls://email:143
-  #     - ROUNDCUBEMAIL_SMTP_SERVER=tls://email:25
-  #     - ROUNDCUBEMAIL_DB_TYPE=sqlite
-  #   depends_on:
-  #     - email
-  #   volumes:
-  #     - ./webmail/conf/config.inc.php:/var/roundcube/config/config.inc.php
+  # Webmail (Roundcube)
+  webmail:
+    image: roundcube/roundcubemail:latest
+    container_name: webmail
+    networks:
+      - praia-networks
+    environment:
+      - ROUNDCUBEMAIL_DEFAULT_HOST=tls://email:143
+      - ROUNDCUBEMAIL_SMTP_SERVER=tls://email:25
+      - ROUNDCUBEMAIL_DB_TYPE=sqlite
+    depends_on:
+      - email
+    volumes:
+      - ./Provedor/webmail/conf/config.inc.php:/var/roundcube/config/config.inc.php
 
   # Servidor SSH
   ssh:

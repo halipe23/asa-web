@@ -1,0 +1,19 @@
+Return-Path: <rafael@miami.asa.br>
+X-Original-To: moedas@miami.asa.br
+Delivered-To: moedas@miami.asa.br
+Received: from webmail.miami.asa.br (webmail.asa-web_praia-networks [172.18.0.5])
+	(Authenticated sender: rafael)
+	by webmail.miami.asa.br (Postfix) with ESMTPSA id 8A7A32BFDD
+	for <moedas@miami.asa.br>; Sat,  1 Mar 2025 06:14:43 +0000 (UTC)
+MIME-Version: 1.0
+Date: Sat, 01 Mar 2025 03:14:43 -0300
+From: rafael <rafael@miami.asa.br>
+To: moedas@miami.asa.br
+Subject: teste
+Message-ID: <40cb727c26ee2cc869fe8bd31685c615@miami.asa.br>
+X-Sender: rafael@miami.asa.br
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+
+teste

@@ -4,19 +4,19 @@
 
 zone "miami.asa.br" {
     type master;
-    file "/etc/bind/zones/db.miami.asa.br";
+    file "/etc/bind/db.miami.asa.br";
     allow-query { any; };
 };
 
 zone "genipa.asa.br" {
     type master;
-    file "/etc/bind/zones/db.genipa.asa.br";
+    file "/etc/bind/db.genipa.asa.br";
     allow-query { any; };
 };
 
 zone "fogo.asa.br" {
     type master;
-    file "/etc/bind/zones/db.fogo.asa.br";
+    file "/etc/bind/db.fogo.asa.br";
     allow-query { any; };
 };
 

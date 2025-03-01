@@ -8,6 +8,6 @@ RUN apt-get -y install iputils-ping
 
 EXPOSE 53/tcp
 EXPOSE 53/udp
-RUN mkdir /etc/bind/zones
+#RUN mkdir /etc/bind/zones
 
-CMD [ "/usr/sbin/named", "-g", "-c", "/etc/bind/named.conf", "-u", "bind" ]
+#CMD [ "/usr/sbin/named", "-g", "-c", "/etc/bind/named.conf", "-u", "bind" ]
