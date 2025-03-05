@@ -40,12 +40,14 @@ O projeto está organizado da seguinte maneira:
  │   ├── 📂 ssh
  │   ├── docker-compose.yml
  │
- ├── 📂 Cliente1
- │   ├── 📂 web
+ ├── 📂 Cliente-fogo
+ │   ├── 📂 db_data
+ │   ├── 📂 SSH
  │   ├── docker-compose.yml
  │
- ├── 📂 Cliente2
- │   ├── 📂 web
+ ├── 📂 Cliente-genipa
+ │   ├── 📂 db_data
+ │   ├── 📂 SSH
  │   ├── docker-compose.yml
  │
  ├── README.md

@@ -12,10 +12,10 @@ $TTL	604800
 ;
 @		IN	NS	ns.miami.asa.br.
 @		IN	MX	10	webmail.miami.asa.br.
-@		IN	A	192.168.15.4
+@		IN	A	192.168.15.6
 
-ns      IN  A   192.168.15.4
-mail    IN  A   192.168.15.4
-webmail IN  A   192.168.15.4
-www     IN  A   192.168.15.4
+ns      IN  A   192.168.15.6
+mail    IN  A   192.168.15.6
+webmail IN  A   192.168.15.6
+www     IN  A   192.168.15.6
 proxy   IN  CNAME www

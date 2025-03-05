@@ -12,9 +12,9 @@ $TTL	604800
 ;
 @		IN	NS	ns.genipa.asa.br.
 @		IN	MX	10	mail
-@		IN	A	192.168.15.4
+@		IN	A	192.168.15.6
 
-ns      IN  A   192.168.15.4
-mail    IN  A   192.168.15.4
-www     IN  A   192.168.15.4
+ns      IN  A   192.168.15.6
+mail    IN  A   192.168.15.6
+www     IN  A   192.168.15.6
 proxy   IN  CNAME www
