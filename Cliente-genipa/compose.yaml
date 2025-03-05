@@ -58,7 +58,7 @@ services:
 volumes:
     db_data:
     wordpress_data:
-    #Redes {lembre-se sempre de criar a rede proxy praia com docker network create proxy-praia}
+    #Redes {lembre-se sempre de criar a rede praia proxy com docker network create praia-proxy}
 networks:
     praia-networks:
         driver: bridge
